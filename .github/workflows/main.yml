@@ -52,7 +52,7 @@ jobs:
           script: |
             cd /home/ubuntu/portofolio-website
             sudo docker-compose down 2>&1 | sudo tee deploy_log.txt
-            sudo docker-compose pull fariddalw/portofolio-website 2>&1 | sudo tee -a deploy_log.txt
+            sudo docker-compose pull fariddalw/portofolio-website:latest 2>&1 | sudo tee -a deploy_log.txt
             sudo docker-compose up -d 2>&1 | sudo tee -a deploy_log.txt
 
       - name: Download Deployment Logs from EC2
