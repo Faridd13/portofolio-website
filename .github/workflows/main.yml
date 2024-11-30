@@ -50,7 +50,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           script: |
-            cd /home/ec2-user/portofolio-website
+            cd /home/ubuntu/portofolio-website
             sudo docker-compose down 2>&1 | sudo tee deploy_log.txt
             sudo docker-compose pull fariddalw/portofolio-website 2>&1 | sudo tee -a deploy_log.txt
             sudo docker-compose up -d 2>&1 | sudo tee -a deploy_log.txt
@@ -59,7 +59,7 @@ jobs:
         run: |
           echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
           chmod 600 private_key.pem
-          scp -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ec2-user/portofolio-website/deploy_log.txt deploy_log.txt
+          scp -o StrictHostKeyChecking=no -i private_key.pem ubuntu@${{ secrets.EC2_PUBLIC_IP }}:/home/ubuntu/portofolio-website/deploy_log.txt deploy_log.txt
 
       - name: Upload Deployment Logs as Artifact
         uses: actions/upload-artifact@v3
